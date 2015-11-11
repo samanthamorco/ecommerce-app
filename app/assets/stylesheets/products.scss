@@ -17,8 +17,7 @@ body{
 tr td {
   // border: 1px solid black;
   padding: 0px 5px;
-  max-width: 100px;
-  max-height: 100px;
+  // max-width: 100px;
 
 }
 
@@ -33,17 +32,18 @@ table{
   margin: auto;
 }
 
-.container{
-  margin: auto;
-}
-.box {
-  width: 30%;
-  border: 1px solid black;
-  float: left;
-  margin: 0 10px;
-}
+// .container{
+//   margin: auto;
+// }
+// .box {
+//   width: 30%;
+//   border: 1px solid black;
+//   float: left;
+//   margin: 0 10px;
+// }
 
 .tablescroll {
   overflow: auto;
-  max-height: 100px;
+  height: 200px;
+  vertical-align: middle;
 }

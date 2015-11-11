@@ -4,16 +4,16 @@
   <tr>
     <th></th>
     <th>Name</th>
-    <th>Price</th>
+    <th>Lowest Price</th>
     <th>Description</th>
   </tr>
 
   <% @products.each do |product| %>
   <tr>
-    <td><img src="<%= product.image %>" class="img-responsive img-thumbnail"></td>
-    <td><%= product.name %></td>
-    <td>$<%= product.price %> </td>
-    <div class="tablescroll"><td><%= product.description %></td></div>
+    <td class="col-md-3"><img src="<%= product.image %>" class="img-responsive img-thumbnail"></td>
+    <td class="col-md-3"><%= product.name %></td>
+    <td class="col-md-1">$<%= product.price %> </td>
+    <td class="col-md-5"><div class="tablescroll"><%= product.description %></div></td>
   </tr>
   <% end %>
 
