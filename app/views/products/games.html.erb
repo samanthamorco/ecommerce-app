@@ -1,0 +1,12 @@
+<h1>Box Format</h1>
+
+<div class="container">
+  <% @products.each do |product| %>
+    <div class="box">
+      <img src="<%= product.image %>" class="img-responsive img-thumbnail"><br>
+      <%= product.name %><br>
+      $<%= product.price %><br>
+      <%= product.description%>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,49 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+img{
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+}
+
+body{
+  margin-left: 20px;
+  text-align: center;
+  margin: auto;
+}
+
+tr td {
+  // border: 1px solid black;
+  padding: 0px 5px;
+  max-width: 100px;
+  max-height: 100px;
+
+}
+
+th{ 
+  // border: 2px solid black;
+  padding: 0px 5px;
+  text-align: center;
+
+}
+
+table{
+  margin: auto;
+}
+
+.container{
+  margin: auto;
+}
+.box {
+  width: 30%;
+  border: 1px solid black;
+  float: left;
+  margin: 0 10px;
+}
+
+.tablescroll {
+  overflow: auto;
+  max-height: 100px;
+}
