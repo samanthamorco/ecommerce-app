@@ -2,11 +2,11 @@
 
 <div class="container">
   <% @products.each do |product| %>
-    <div class="box">
-      <img src="<%= product.image %>" class="img-responsive img-thumbnail"><br>
-      <%= product.name %><br>
-      $<%= product.price %><br>
-      <%= product.description%>
+    <div class="box col-md-3">
+      <img src="<%= product.image %>" class="img-responsive"><br>
+      <h4><%= product.name %></h4>
+      Lowest Price: $<%= product.price %><br><br>
+      <div class="tablescroll"><%= product.description %></div>
     </div>
   <% end %>
 </div>

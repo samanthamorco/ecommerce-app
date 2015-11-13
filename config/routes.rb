@@ -1,7 +1,26 @@
 Rails.application.routes.draw do
 
-  get '/info', to: 'products#info'
+  get '/index', to: 'products#index'
   get '/games', to: 'products#games'
+  # get '/parameters', to:'products#parameters'
+  # get '/add', to: 'products#add_game'
+  # post '/updated', to: 'products#updated'
+
+  # this is for table format
+  get '/index/new', to:'products#new'
+  post '/index', to:'products#create'
+  get '/index/:id', to: 'products#show'
+  get '/index/:id/edit', to: 'products#edit'
+  patch '/index/:id', to: 'products#update'
+  delete '/index/:id', to: 'products#destroy'
+
+  #this is for box format. Please change route in new.html first.
+  get '/games/new', to:'products#new'
+  post '/games', to:'products#create'
+  get '/games/:id', to: 'products#show'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

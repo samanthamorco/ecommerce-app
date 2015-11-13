@@ -1,0 +1,10 @@
+<h1><%= @product.name %></h1>
+
+<img src="<%= @product.image %>" class="center_image">
+<br>
+<p>
+Price: $<%= @product.price %>
+</p>
+<p><%= @product.description %></p>
+
+<%= link_to "Delete", "/index/#{@product.id}", method: :delete %>
