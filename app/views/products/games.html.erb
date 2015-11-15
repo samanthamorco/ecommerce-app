@@ -1,12 +1,17 @@
-<h1>Box Format</h1>
+<h1>Games</h1>
 
-<div class="container">
-  <% @products.each do |product| %>
-    <div class="box col-md-3">
-      <img src="<%= product.image %>" class="img-responsive"><br>
-      <h4><%= product.name %></h4>
-      Lowest Price: $<%= product.price %><br><br>
-      <div class="tablescroll"><%= product.description %></div>
-    </div>
-  <% end %>
+<% @products.each do |product| %>
+<div class="col-md-3">
+  <div class="product-box">    
+    <img class="center-block img-responsive" src="<%= product.image %>">
+    <h4><%= link_to product.name, product_path(product.id) %></h4>
+    <h5>Lowest Price: $<%= product.price %></h5>
+    <div class="description_scroll"><%= product.description %></div>
+  </div>
 </div>
+<% end %>
+</div>
+
+<div class="button">
+  <button type="button" class="btn btn-primary btn-lg"><%= link_to 'Add Game', new_path %></button>
+

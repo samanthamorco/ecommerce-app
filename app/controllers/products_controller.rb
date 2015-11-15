@@ -17,8 +17,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    Product.create(name: params[:name], price: params[:price], description: params[:description], image: params[:image])
-    @products = Product.all
+    product = Product.create(name: params[:name], price: params[:price], description: params[:description], image: params[:image])
+    flash[:success] = "Game Created"
+    redirect_to "/games/#{product.id}"
   end
 
   def show
@@ -33,13 +34,15 @@ class ProductsController < ApplicationController
 
   def update
     id = params[:id]
-    game = Product.find_by(id: id)
+    product = Product.find_by(id: id)
     name = params[:name]
     price = params[:price]
     description = params[:description]
     image = params[:image]
 
-    game.update(name: name, price: price, description: description, image: image)
+    product.update(name: name, price: price, description: description, image: image)
+    flash[:info] = "Game Updated"
+    redirect_to "/games/#{product.id}"
 
   end
 
@@ -47,5 +50,7 @@ class ProductsController < ApplicationController
     id = params[:id]
     @product = Product.find_by(id: id)
     @product.destroy
+    flash[:danger] = "Game Deleted!"
+    redirect_to "/games"
   end
 end
