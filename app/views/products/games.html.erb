@@ -2,16 +2,22 @@
 
 <% @products.each do |product| %>
 <div class="col-md-3">
-  <div class="product-box">    
+  <a href="/games/<%= product.id %>" class="nil">  
+  <div class="product-box">  
     <img class="center-block img-responsive" src="<%= product.image %>">
-    <h4><%= link_to product.name, product_path(product.id) %></h4>
-    <h5>Lowest Price: $<%= product.price %></h5>
+    <h4><%= product.name %></h4>
+    <h5>Lowest Price: <%= number_to_currency(product.price) %></h5>
+    <p class="center"><%= product.stock %></p>
     <div class="description_scroll"><%= product.description %></div>
   </div>
+    </a>
 </div>
 <% end %>
 </div>
 
 <div class="button">
-  <button type="button" class="btn btn-primary btn-lg"><%= link_to 'Add Game', new_path %></button>
+  <%= button_to 'Add Game', new_path, :class => 'btn btn-add btn-default btn-large' %>
+</div>
 
+<%= link_to "Show all", "/games?showall=true" %>
+<%= link_to "Show Discounted", "/games?showall=false" %>

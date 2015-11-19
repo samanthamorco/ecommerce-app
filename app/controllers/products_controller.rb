@@ -1,23 +1,49 @@
 class ProductsController < ApplicationController
 
-  def index
-    @products = Product.all
-  end
+  # def index
+  #   @products = Product.all
+
+  # end
+
+# http://apidock.com/rails/ActiveRecord/QueryMethods/where
 
   def games
-    @products = Product.all
-  end
 
-  def parameters
-    @message = params[:message]
-    @second_message = params[:second_message]
+    if params[:showall] == "false"
+      @products = Product.get_discounted
+    else
+      @products = Product.all
+    end
+
+
+  #   @showall = params[:showall]
+  #   @discounted = []
+  #   @allproducts = []
+
+  #   @products.each do |product|
+  #     if product.sale_message == "Discount item!"
+  #       @discounted << product
+  #     end
+  #   end
+
+  #   if @showall == "false"
+  #     @allproducts = @discounted
+  #   else
+  #     @allproducts = @products
+  #   end
+  # end
+
+  # def parameters
+  #   @message = params[:message]
+  #   @second_message = params[:second_message]
+
   end
 
   def new
   end
 
   def create
-    product = Product.create(name: params[:name], price: params[:price], description: params[:description], image: params[:image])
+    product = Product.create(name: params[:name], price: params[:price], description: params[:description], image: params[:image], stock_info: params[:stock_info])
     flash[:success] = "Game Created"
     redirect_to "/games/#{product.id}"
   end
@@ -40,7 +66,7 @@ class ProductsController < ApplicationController
     description = params[:description]
     image = params[:image]
 
-    product.update(name: name, price: price, description: description, image: image)
+    product.update(name: name, price: price, description: description, image: image, stock_info: params[:stock_info])
     flash[:info] = "Game Updated"
     redirect_to "/games/#{product.id}"
 

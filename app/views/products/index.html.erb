@@ -12,7 +12,7 @@
     <tr>
       <td class="col-md-3"><img src="<%= product.image %>" class="img-responsive"></td>
       <td class="col-md-3"><%= link_to product.name, "/index/#{product.id}" %></td>
-      <td class="col-md-1">$<%= product.price %> </td>
+      <td class="col-md-1">$<%= number_to_currency(product.price) %> </td>
       <td class="col-md-5"><div class="tablescroll"><%= product.description %></div></td>
     </tr>
     <% end %>

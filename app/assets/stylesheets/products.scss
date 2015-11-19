@@ -2,19 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.title {
-  color: black;
-}
-
-a.hover {
-  text-decoration: none;
-}
-
 img{
   max-height: 200px;
   max-width: 200px;
 }
-
 
 h1, h4, h5{
   text-align: center;
@@ -27,15 +18,17 @@ h1, h4, h5{
 
 .product-box {
   background: lightblue;
-  margin: 10px 2px;
+  margin: 10px 0px;
   border-radius: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   height: 500px;
 }
 
 .product-box:hover {
   background-color: Cornflowerblue;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .description_scroll {
@@ -45,9 +38,25 @@ h1, h4, h5{
 
 }
 
+.nil {
+  text-decoration: none;
+  color: black;
+}
+
+.nil:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .button {
-  padding: 20px;
   text-align: center;
+}
+
+.btn-add{
+  border: 1px solid black;
+  padding: 15px;
+  font-size: 18px;
+  margin: 10px 0px;
 }
 
 

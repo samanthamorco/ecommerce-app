@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # post '/updated', to: 'products#updated'
 
   #this is for box format. Please change route in new.html first.
-  get '/games/new', to:'products#new', as: '/new'
+  post '/games/new', to:'products#new', as: '/new'
   post '/games', to:'products#create'
   get '/games/:id', to: 'products#show', as: '/product'
   get '/games/:id/edit', to: 'products#edit', as: '/edit'
