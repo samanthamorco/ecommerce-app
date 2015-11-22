@@ -1,0 +1,13 @@
+<%= form_tag "/games/#{@product.id}", method: :post do %>
+
+Fill out the following form to add a game to the list:
+<div>
+  <%= label_tag :image_url, "Image:" %>
+  <%= text_field_tag :image_url %>
+</div>
+
+<div>
+  <%= submit_tag "Submit Image" %>
+</div>
+
+<% end %>

@@ -2,16 +2,18 @@ Rails.application.routes.draw do
 
   get '/games', to: 'products#games'
   # get '/parameters', to:'products#parameters'
-  # get '/add', to: 'products#add_game'
-  # post '/updated', to: 'products#updated'
 
-  #this is for box format. Please change route in new.html first.
   post '/games/new', to:'products#new', as: '/new'
   post '/games', to:'products#create'
   get '/games/:id', to: 'products#show', as: '/product'
   get '/games/:id/edit', to: 'products#edit', as: '/edit'
+  get '/games/:id/images/new', to: 'images#new'
+  post '/games/:id', to:'products#create'
+  post '/games/:id', to:'images#create'
   patch '/games/:id', to: 'products#update'
   delete '/games/:id', to: 'products#destroy'
+
+  post '/games/search', to:'products#search'
 
 
 

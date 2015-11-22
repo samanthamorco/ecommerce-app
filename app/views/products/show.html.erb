@@ -1,17 +1,25 @@
 <h1><%= @product.name %></h1>
 
-<div class="center"><img src="<%= @product.image %>"></div>
+<div class="center"><img src="<%= @images.first.image_url %>"></div>
 <br>
+<h4>Supplier: <%= @product.supplier.name %></h4>
 <h4>Price: <%= number_to_currency(@product.price) %> (<%= @product.sale_message %>)</h4>
 <h4>Tax: <%= number_to_currency(@product.tax) %></h4>
 <h4>Total Price: <%= number_to_currency(@product.total) %></h4>
-<h4><%= @product.stock_info %></h4>
+<h4><%= @product.stock %></h4>
 <h5>Description:</h5>
 <p><%= @product.description %></p>
+
+<p>
+<% @images.each do |image| %>
+  <img src="<%= image.image_url %>">
+<% end %>
+</p>
+
 
 <p>Last updated: <%= @product.friendly_updated_at %></p>
 <%= link_to "Edit", edit_path %><br>
 
 <%= link_to "Delete", "/games/#{@product.id}", method: :delete %><br>
-<%= link_to "Go back", "/games" %>
-
+<%= link_to "Go back", "/games" %><br>
+<%= link_to "Add Images", "/games/#{@product.id}/images/new", method: :get %>

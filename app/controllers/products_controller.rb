@@ -15,6 +15,12 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    if params[:order] == "ascending"
+      @products = Product.order(:price)
+    elsif params[:order] == "descending"
+      @products = Product.order(price: :desc)
+    end
+
 
   #   @showall = params[:showall]
   #   @discounted = []
@@ -43,7 +49,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.create(name: params[:name], price: params[:price], description: params[:description], image: params[:image], stock_info: params[:stock_info])
+    product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: params[:stock_info])
+    image = Image.create(image_url: params[:image], product_id: product.id)
     flash[:success] = "Game Created"
     redirect_to "/games/#{product.id}"
   end
@@ -51,6 +58,7 @@ class ProductsController < ApplicationController
   def show
     id = params[:id]
     @product = Product.find_by(id: id)
+    @images = @product.images
   end
 
   def edit
@@ -64,9 +72,8 @@ class ProductsController < ApplicationController
     name = params[:name]
     price = params[:price]
     description = params[:description]
-    image = params[:image]
 
-    product.update(name: name, price: price, description: description, image: image, stock_info: params[:stock_info])
+    product.update(name: name, price: price, description: description, stock_info: params[:stock_info])
     flash[:info] = "Game Updated"
     redirect_to "/games/#{product.id}"
 
@@ -79,4 +86,11 @@ class ProductsController < ApplicationController
     flash[:danger] = "Game Deleted!"
     redirect_to "/games"
   end
+
+  def search
+    search_term = params[:search]
+    @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+    render :games
+  end
+
 end

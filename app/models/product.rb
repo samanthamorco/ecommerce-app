@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
 
+  belongs_to :supplier
+  has_many :images
+  
   def friendly_updated_at
     return updated_at.strftime("%B %e, %Y")
   end
@@ -31,4 +34,5 @@ class Product < ActiveRecord::Base
       stock = "Out of Stock"
     end
   end
+
 end

@@ -4,7 +4,7 @@
 <div class="col-md-3">
   <a href="/games/<%= product.id %>" class="nil">  
   <div class="product-box">  
-    <img class="center-block img-responsive" src="<%= product.image %>">
+    <img class="center-block img-responsive" src="<%= product.images.first.image_url %>">
     <h4><%= product.name %></h4>
     <h5>Lowest Price: <%= number_to_currency(product.price) %></h5>
     <p class="center"><%= product.stock %></p>
@@ -19,5 +19,9 @@
   <%= button_to 'Add Game', new_path, :class => 'btn btn-add btn-default btn-large' %>
 </div>
 
-<%= link_to "Show all", "/games?showall=true" %>
-<%= link_to "Show Discounted", "/games?showall=false" %>
+
+<div class="center">
+<%= link_to "Show all", "/games?showall=true" %> ||
+<%= link_to "Ascending Order", "/games?order=ascending" %> ||
+<%= link_to "Descending Order", "/games?order=descending" %>
+</div>
