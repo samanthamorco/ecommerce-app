@@ -17,7 +17,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # This adds bootstrap sass
 gem 'bootstrap-sass', '~> 3.3.5'
 
-# gem 'quiet_assets', group: :development
 
 
 # Use jquery as the JavaScript library
