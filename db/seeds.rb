@@ -1,7 +1,3 @@
-User.create!([
-  {email: "fake@gmail.com", encrypted_password: "$2a$10$pFyAkaGQ8rkpsBpg3IW.A.KC5UvqApN4gmhBJaCc/VpqP8yAMY3d.", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 7, current_sign_in_at: "2015-11-24 02:15:06", last_sign_in_at: "2015-11-23 00:19:47", current_sign_in_ip: "::1", last_sign_in_ip: "::1"},
-  {email: "test@gmail.com", encrypted_password: "$2a$10$5mlZHzXH7t2EBx9rj2dnl.yUFu5RLRgSjgJgLNUcbqo/DzHz2LOAy", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-23 00:44:51", last_sign_in_at: "2015-11-23 00:44:51", current_sign_in_ip: "::1", last_sign_in_ip: "::1"}
-])
 Image.create!([
   {image_url: "http://img.gamefaqs.net/box/4/5/0/204450_front.jpg", product_id: 1},
   {image_url: "https://upload.wikimedia.org/wikipedia/en/0/07/Super_Danganronpa_2_Cover_Art.jpg", product_id: 2},
