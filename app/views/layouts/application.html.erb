@@ -27,14 +27,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/games">Game Deals</a>
+      <a class="navbar-brand" href="/index">Game Deals</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/games?showall=false">Discount <span class="sr-only">(current)</span></a></li>
-        <li><a href="/games/<%= (rand(Product.count) + 1) %>">Random</a></li>
+        <li class="active"><a href="/index?showall=false">Discount <span class="sr-only">(current)</span></a></li>
+        <li><a href="/index/<%= (rand(Product.count) + 1) %>">Random</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -55,17 +55,25 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+<!--       <% if current_user %>
+        <li><a><%= current_user.email %> is signed in.</a></li>
+        <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign Up", "users/sign_up" %></li>
+        <li><%= link_to "Sign In", "users/sign_in" %></li>
+      <% end %> -->
+
+      <% if current_user %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><%= link_to "Log Out", "/users/sign_out", method: :delete %></li>
           </ul>
         </li>
+        <% else %>
+          <li><%= link_to "Sign Up", "users/sign_up" %></li>
+          <li><%= link_to "Sign In", "users/sign_in" %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -75,7 +83,7 @@
 <div class="container">
 <div class="row">
   <div class="pull-right">
-  <%= form_tag "/games/search", method: :post do %>
+  <%= form_tag "/index/search", method: :post do %>
   <%= text_field_tag :search %>
   <%= submit_tag "Search" %>
   <% end %>

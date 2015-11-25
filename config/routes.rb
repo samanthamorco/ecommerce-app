@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
 
-  get '/games', to: 'products#games'
-  # get '/parameters', to:'products#parameters'
+  devise_for :users
+  root to: "products#index"
 
-  post '/games/new', to:'products#new', as: '/new'
-  post '/games', to:'products#create'
-  get '/games/:id', to: 'products#show', as: '/product'
-  get '/games/:id/edit', to: 'products#edit', as: '/edit'
-  get '/games/:id/images/new', to: 'images#new'
-  post '/games/:id', to:'products#create'
-  post '/games/:id', to:'images#create'
-  patch '/games/:id', to: 'products#update'
-  delete '/games/:id', to: 'products#destroy'
+  get '/index', to: 'products#index'
+  post '/index/new', to:'products#new', as: '/new'
+  post '/index', to:'products#create'
+  get '/index/:id', to: 'products#show', as: '/product'
+  get '/index/:id/edit', to: 'products#edit', as: '/edit'
+  post '/index/search', to:'products#search'
 
-  post '/games/search', to:'products#search'
+  patch '/index/:id', to: 'products#update'
+  delete '/index/:id', to: 'products#destroy'
+  # get '/index/images/new', to: 'images#new'
+  # post '/index', to: 'images#create'
 
+  post "/orders", to: 'orders#create'
+  get "/orders/:id", to: 'orders#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

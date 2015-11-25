@@ -1,9 +1,19 @@
-<%= form_tag '/games', method: :post do %>
+<%= form_tag '/index', method: :post do %>
 
 Fill out the following form to add a game to the list:
 <div>
   <%= label_tag :name, "Game Title:" %>
   <%= text_field_tag :name %>
+</div>
+
+<div>
+  <%= label_tag :supplier, "Supplier:" %>
+  <%= radio_button_tag(:supplier, "Atlus") %> 
+  <%= label_tag(:supplier_Atlus, "Atlus") %>
+  <%= radio_button_tag(:supplier, "Sony") %>
+  <%= label_tag(:supplier_Sony, "Sony") %>
+  <%= radio_button_tag(:supplier, "Nintendo") %>
+  <%= label_tag(:supplier_Nintendo, "Nintendo") %>
 </div>
 
 <div>
@@ -17,15 +27,12 @@ Fill out the following form to add a game to the list:
 </div>
 
 <div>
-  <%= label_tag :image, "Image:" %>
-  <%= text_field_tag :image %>
-</div>
-
-<div>
   <%= label_tag :stock_info, "Stock:" %>
-  <%= text_field_tag :stock_info %>
+  <%= radio_button_tag(:stock_info, "In Stock") %> 
+  <%= label_tag(:stock_info, "In Stock") %>
+  <%= radio_button_tag(:stock_info, "Out of Stock") %>
+  <%= label_tag(:stock_info, "Out of Stock") %>
 </div>
-
 
 <div>
   <%= submit_tag "Submit Game" %>

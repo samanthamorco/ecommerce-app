@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
 # http://apidock.com/rails/ActiveRecord/QueryMethods/where
 
-  def games
+  def index
 
     if params[:showall] == "false"
       @products = Product.get_discounted
@@ -49,10 +49,16 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: params[:stock_info])
-    image = Image.create(image_url: params[:image], product_id: product.id)
+    if params[:stock_info] == "In Stock"
+      stock = true
+    else
+      stock = false
+    end
+    supplier = Supplier.find_by(name: params[:supplier])
+    product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, user_id: current_user.id, supplier_id: supplier.id)
+    # image = Image.create(image_url: params[:image], product_id: product.id)
     flash[:success] = "Game Created"
-    redirect_to "/games/#{product.id}"
+    redirect_to "/index/images/new"
   end
 
   def show
@@ -72,10 +78,15 @@ class ProductsController < ApplicationController
     name = params[:name]
     price = params[:price]
     description = params[:description]
+    if params[:stock_info] == "In Stock"
+      stock = true
+    else
+      stock = false
+    end
 
-    product.update(name: name, price: price, description: description, stock_info: params[:stock_info])
+    product.update(name: name, price: price, description: description, stock_info: stock, user_id: current_user.id)
     flash[:info] = "Game Updated"
-    redirect_to "/games/#{product.id}"
+    redirect_to "/index/#{product.id}"
 
   end
 
@@ -84,13 +95,13 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: id)
     @product.destroy
     flash[:danger] = "Game Deleted!"
-    redirect_to "/games"
+    redirect_to "/index"
   end
 
   def search
     search_term = params[:search]
     @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
-    render :games
+    render :index
   end
 
 end

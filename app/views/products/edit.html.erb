@@ -1,4 +1,4 @@
-<%= form_tag "/games/#{@product.id}", method: :patch do %>
+<%= form_tag "/index/#{@product.id}", method: :patch do %>
 
 Fill out the following form to add a game to the list:
 <div>
@@ -18,7 +18,10 @@ Fill out the following form to add a game to the list:
 
 <div>
   <%= label_tag :stock_info, "Stock:" %>
-  <%= text_field_tag :stock_info, @product.stock_info %>
+  <%= radio_button_tag(:stock_info, "In Stock") %> 
+  <%= label_tag(:stock_info, "In Stock") %>
+  <%= radio_button_tag(:stock_info, "Out of Stock") %>
+  <%= label_tag(:stock_info, "Out of Stock") %>
 </div>
 
 <div>

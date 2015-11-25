@@ -17,9 +17,27 @@
 </p>
 
 
+
+Buy Now:
+<div>
+<%= form_tag "/orders", method: :post do %>
+
+<%= label_tag "Quantity" %>
+<%= text_field_tag :quantity %>
+<%= hidden_field_tag :productid, @product.id %>
+</div>
+<%= submit_tag "Buy Now" %>
+<% end %>
+
+
+
+
 <p>Last updated: <%= @product.friendly_updated_at %></p>
+<p>Updated by: <%= @product.user.email %></p>
 <%= link_to "Edit", edit_path %><br>
 
-<%= link_to "Delete", "/games/#{@product.id}", method: :delete %><br>
-<%= link_to "Go back", "/games" %><br>
-<%= link_to "Add Images", "/games/#{@product.id}/images/new", method: :get %>
+<%= link_to "Delete", "/index/#{@product.id}", method: :delete %><br>
+<%= link_to "Go back", "/index" %><br>
+
+
+

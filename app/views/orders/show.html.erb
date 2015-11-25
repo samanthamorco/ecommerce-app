@@ -1,0 +1,12 @@
+<h1>Thanks for your orders!</h1>
+
+<p>Order #<%= @order.id %></p>
+<p>Product: <%= @order.product.name %></p>
+<p>Product ID: <%= @order.product_id %></p>
+<p>Quantity: <%= @order.quantity %></p>
+<p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
+<p>Tax: <%= number_to_currency(@order.tax) %></p>
+<p>Total Price: <%= number_to_currency(@order.total) %></p>
+<p>Purchased: <%= @order.created_at %></p>
+<p>Your email: <%= @order.user.email %></p>
+<img src="<%= @order.product.images.first.image_url %>" >

@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
 
   belongs_to :supplier
+  belongs_to :user
   has_many :images
+  has_many :orders
   
   def friendly_updated_at
     return updated_at.strftime("%B %e, %Y")

@@ -1,8 +1,13 @@
 <h1>Games</h1>
 
+<div class="center">
+<%= link_to "Show all", "/index?showall=true" %> ||
+<%= link_to "Price: Low to High", "/index?order=ascending" %> ||
+<%= link_to "Price: High to Low", "/index?order=descending" %>
+</div>
 <% @products.each do |product| %>
 <div class="col-md-3">
-  <a href="/games/<%= product.id %>" class="nil">  
+  <a href="/index/<%= product.id %>" class="nil">  
   <div class="product-box">  
     <img class="center-block img-responsive" src="<%= product.images.first.image_url %>">
     <h4><%= product.name %></h4>
@@ -20,8 +25,3 @@
 </div>
 
 
-<div class="center">
-<%= link_to "Show all", "/games?showall=true" %> ||
-<%= link_to "Ascending Order", "/games?order=ascending" %> ||
-<%= link_to "Descending Order", "/games?order=descending" %>
-</div>
