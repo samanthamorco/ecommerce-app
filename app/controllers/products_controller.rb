@@ -100,7 +100,7 @@ class ProductsController < ApplicationController
 
   def search
     search_term = params[:search]
-    @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+    @products = Product.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}%", "%#{search_term}%")
     render :index
   end
 
