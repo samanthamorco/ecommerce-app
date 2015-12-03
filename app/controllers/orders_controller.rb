@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       to_buy_products.each do |item|
         item.update(status: "purchased", order_id: @order.id)
       end
-      redirect_to "/orders/#{@order.id}"
+      redirect_to "/orders/:#{@order.id}"
     else
       render template: "carted_products/index"
     end

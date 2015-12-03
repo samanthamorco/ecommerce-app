@@ -33,8 +33,8 @@ class CartedProductsController < ApplicationController
       flash[:warning] = "#{carted_product.quantity} copies of #{carted_product.product.name}"
     else
       flash[:danger] = "Product not removed. Please try again."
-      redirect_to "/cart"
     end
+    redirect_to "/cart"
   end
 
 
