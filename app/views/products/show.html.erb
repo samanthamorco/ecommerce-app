@@ -1,17 +1,29 @@
 <h1><%= @product.name %></h1>
 
-<div class="center"><img src="<%= @images.first.image_url %>"></div>
+<% if @product && @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    <li class="error"><%= message %></li>
+  <% end %>
+<% end %>
+
+<div class="center"><img src="<%= @product.images.first.image_url %>"></div>
 <br>
 <h4>Supplier: <%= @product.supplier.name %></h4>
 <h4>Price: <%= number_to_currency(@product.price) %> (<%= @product.sale_message %>)</h4>
 <h4>Tax: <%= number_to_currency(@product.tax) %></h4>
 <h4>Total Price: <%= number_to_currency(@product.total) %></h4>
 <h4><%= @product.stock %></h4>
+<h5>Categories:</h5>
+<ul class="center">
+  <% @product.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
 <h5>Description:</h5>
 <p><%= @product.description %></p>
 
 <p>
-<% @images.each do |image| %>
+<% @product.images.each do |image| %>
   <img src="<%= image.image_url %>">
 <% end %>
 </p>
@@ -20,13 +32,13 @@
 
 Buy Now:
 <div>
-<%= form_tag "/orders", method: :post do %>
+<%= form_tag "/cart", method: :post do %>
 
 <%= label_tag "Quantity" %>
-<%= text_field_tag :quantity %>
-<%= hidden_field_tag :productid, @product.id %>
+<%= text_field_tag :quantity, @carted_product.quantity %>
+<%= hidden_field_tag :product_id, @product.id %>
 </div>
-<%= submit_tag "Buy Now" %>
+<%= submit_tag "Add to Cart" %>
 <% end %>
 
 
@@ -34,7 +46,7 @@ Buy Now:
 
 <p>Last updated: <%= @product.friendly_updated_at %></p>
 <p>Updated by: <%= @product.user.email %></p>
-<%= link_to "Edit", edit_path %><br>
+<%= link_to "Edit", "/index/#{@product.id}/edit", method: :get %><br>
 
 <%= link_to "Delete", "/index/#{@product.id}", method: :delete %><br>
 <%= link_to "Go back", "/index" %><br>

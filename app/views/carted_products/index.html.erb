@@ -1,0 +1,36 @@
+<h1>Cart</h1>
+
+<table class="table">
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Remove Product</th>
+  </tr>
+<% @carted_products.each do |item| %>
+  <tr>
+    <td><%= item.product.name %></td></td>
+    <td><%= item.quantity %></td>
+    <td><%= item.product.price %></td>
+    <td><%= link_to "Remove", "/cart/#{item.id}", method: :delete %></td>
+  </tr>
+
+<% end %>
+</table>
+
+<table class="table">
+  <tr>
+    <th>Subtotal</th>
+    <th><%= @subtotal %></th>
+  </tr>
+  <tr>
+    <th>Tax</th>
+    <th><%= @tax %></th>
+  </tr>
+  <tr>
+    <th>Total</th>
+    <th><%= @total %></th>
+  </tr>
+</table>
+
+<%= link_to "Confirm and Buy", "/orders", method: :post %>

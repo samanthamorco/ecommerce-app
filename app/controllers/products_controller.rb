@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 # http://apidock.com/rails/ActiveRecord/QueryMethods/where
 
   def index
-
+    @categories = Category.all
     if params[:showall] == "false"
       @products = Product.get_discounted
     else
@@ -21,31 +21,14 @@ class ProductsController < ApplicationController
       @products = Product.order(price: :desc)
     end
 
-
-  #   @showall = params[:showall]
-  #   @discounted = []
-  #   @allproducts = []
-
-  #   @products.each do |product|
-  #     if product.sale_message == "Discount item!"
-  #       @discounted << product
-  #     end
-  #   end
-
-  #   if @showall == "false"
-  #     @allproducts = @discounted
-  #   else
-  #     @allproducts = @products
-  #   end
-  # end
-
-  # def parameters
-  #   @message = params[:message]
-  #   @second_message = params[:second_message]
+    if params[:category]
+      @products = Category.find_by(name:params[:category]).products
+    end
 
   end
 
   def new
+    @product = Product.new
   end
 
   def create
@@ -55,13 +38,20 @@ class ProductsController < ApplicationController
       stock = false
     end
     supplier = Supplier.find_by(name: params[:supplier])
-    product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, user_id: current_user.id, supplier_id: supplier.id)
-    # image = Image.create(image_url: params[:image], product_id: product.id)
-    flash[:success] = "Game Created"
-    redirect_to "/index/images/new"
+    # product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, user_id: current_user.id)
+    @product = Product.new(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, supplier: supplier, user_id: current_user.id)
+    if @product.save
+      flash[:success] = "Game Created"
+      # redirect_to "/index/images/new"
+      redirect_to "/index"
+    else
+      flash[:danger] = "You hella messed up."
+      render :new
+    end
   end
 
   def show
+    @carted_product = CartedProduct.new
     id = params[:id]
     @product = Product.find_by(id: id)
     @images = @product.images

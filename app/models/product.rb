@@ -3,8 +3,16 @@ class Product < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :user
   has_many :images
-  has_many :orders
+  has_many :categorized_products
+  has_many :categories, through: :categorized_products
   
+  has_many :carted_products
+  has_many :orders, through: :carted_products
+
+  validates :name, :price, :description, :stock_info, :user, presence: true
+  validates :price, numericality: true
+
+
   def friendly_updated_at
     return updated_at.strftime("%B %e, %Y")
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post '/index/new', to:'products#new', as: '/new'
   post '/index', to:'products#create'
   get '/index/:id', to: 'products#show', as: '/product'
-  get '/index/:id/edit', to: 'products#edit', as: '/edit'
+  get '/index/:id/edit', to: 'products#edit'
   post '/index/search', to:'products#search'
 
   patch '/index/:id', to: 'products#update'
@@ -15,9 +15,12 @@ Rails.application.routes.draw do
   get '/index/images/new', to: 'images#new'
   post '/index', to: 'images#create'
 
+  get "/cart", to: 'carted_products#index'
+  post "/cart", to: 'carted_products#create'
+  delete "/cart/:id", to: 'carted_products#destroy'
+
   post "/orders", to: 'orders#create'
   get "/orders/:id", to: 'orders#show'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
