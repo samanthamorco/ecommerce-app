@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
+  #this only works because of devise gem
+  before_action :authenticate_user!
+
   def create
     to_buy_products = current_user.carted_products.where(status: "carted")
     subtotal = calculate_subtotal(to_buy_products)

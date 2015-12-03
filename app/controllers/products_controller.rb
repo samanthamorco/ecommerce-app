@@ -1,11 +1,9 @@
 class ProductsController < ApplicationController
 
-  # def index
-  #   @products = Product.all
-
-  # end
-
 # http://apidock.com/rails/ActiveRecord/QueryMethods/where
+
+  before_action :authenticate_admin!, except: [:index, :show, :search]
+  # before_action :authenticate_admin!, only: [:new, :create, :destroy, :update, :edit]
 
   def index
     @categories = Category.all
@@ -24,11 +22,15 @@ class ProductsController < ApplicationController
     if params[:category]
       @products = Category.find_by(name:params[:category]).products
     end
-
   end
+  
 
   def new
-    @product = Product.new
+    if current_user && current_user.admin?
+      @product = Product.new
+    else
+      redirect_to "/"
+    end
   end
 
   def create

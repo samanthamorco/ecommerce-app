@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authenticate_admin!
+    flash[:danger] = "Please don't hack me D:"
+    redirect_to "/" unless current_user && current_user.admin?
+  end
+
   def calculate_subtotal(carted_products)
     subtotal = 0
     carted_products.each do |item|
