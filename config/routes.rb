@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "products#index"
 
+  resources :suppliers
+
   get '/index', to: 'products#index'
   post '/index/new', to:'products#new', as: '/new'
   post '/index', to:'products#create'

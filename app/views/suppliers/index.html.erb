@@ -1,0 +1,7 @@
+<h1>List of Suppliers</h1>
+
+<ol>
+  <% @suppliers.each do |supplier| %>
+  <li><%= link_to "#{supplier.name}", "/suppliers/#{supplier.id}" %></li>
+  <% end %>
+</ol>

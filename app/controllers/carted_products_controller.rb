@@ -19,6 +19,7 @@ class CartedProductsController < ApplicationController
     @product = Product.find_by(id: params[:product_id])
     @carted_product = CartedProduct.new(user_id: current_user.id, product_id: params[:product_id], quantity: params[:quantity], status: "carted")
     if @carted_product.save
+      session[:cart_count] += 1
       flash[:success] = "Item Added to Cart"
       redirect_to "/cart"
     else
@@ -30,7 +31,8 @@ class CartedProductsController < ApplicationController
     carted_product = CartedProduct.find_by(id: params[:id])
     carted_product.status = "removed"
     if carted_product.save
-      flash[:warning] = "#{carted_product.quantity} copies of #{carted_product.product.name}"
+      session[:cart_count] -= 1
+      flash[:warning] = "#{carted_product.quantity} copies of #{carted_product.product.name} Removed"
     else
       flash[:danger] = "Product not removed. Please try again."
     end

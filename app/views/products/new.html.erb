@@ -12,7 +12,7 @@ Fill out the following form to add a game to the list:
   <%= text_field_tag :name, @product.name %>
 </div>
 
-<div>
+<!-- <div>
   <%= label_tag :supplier, "Supplier:" %>
   <%= radio_button_tag(:supplier, "Atlus") %> 
   <%= label_tag(:supplier_Atlus, "Atlus") %>
@@ -20,8 +20,11 @@ Fill out the following form to add a game to the list:
   <%= label_tag(:supplier_Sony, "Sony") %>
   <%= radio_button_tag(:supplier, "Nintendo") %>
   <%= label_tag(:supplier_Nintendo, "Nintendo") %>
+</div> -->
+<div>
+<%= label_tag :supplier, "Supplier:" %>
+<%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
 </div>
-
 <div>
   <%= label_tag :price, "Price:" %>
   <%= text_field_tag :price, @product.price %>

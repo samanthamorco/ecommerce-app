@@ -1,1 +1,8 @@
-<%= @supplier.name %>
+<p>Company Name: <%= @supplier.name %></p>
+<p>First Name: <%= @supplier.first_name %></p>
+<p>Last Name: <%= @supplier.last_name %></p>
+<p>Email: <%= @supplier.email %></p>
+<p>Phone Number: <%= @supplier.phone %></p>
+
+<%= link_to "Edit Info", edit_supplier_path %><br>
+<%= link_to "Delete", "/suppliers/#{@supplier.id}", method: :delete %>

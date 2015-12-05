@@ -39,9 +39,9 @@ class ProductsController < ApplicationController
     else
       stock = false
     end
-    supplier = Supplier.find_by(name: params[:supplier])
+    # supplier = Supplier.find_by(name: params[:supplier])
     # product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, user_id: current_user.id)
-    @product = Product.new(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, supplier: supplier, user_id: current_user.id)
+    @product = Product.new(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, supplier: [:supplier][:supplier_id], user_id: current_user.id)
     if @product.save
       flash[:success] = "Game Created"
       # redirect_to "/index/images/new"

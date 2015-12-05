@@ -11,10 +11,11 @@ class OrdersController < ApplicationController
     @order = Order.new(user_id: current_user.id, subtotal: subtotal, tax: tax, total: total)
     if @order.save
       # to_buy_products.update_all(status: "purchased", order_id: @order_id)
+      session[:cart_count] = nil
       to_buy_products.each do |item|
         item.update(status: "purchased", order_id: @order.id)
       end
-      redirect_to "/orders/:#{@order.id}"
+      redirect_to "/orders/#{@order.id}"
     else
       render template: "carted_products/index"
     end

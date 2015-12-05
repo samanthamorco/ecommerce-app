@@ -17,5 +17,9 @@ class User < ActiveRecord::Base
   def shopper?
     role.name == "shopper"
   end
+
+  def supplier?
+    role.name == "supplier"
+  end
   
 end
