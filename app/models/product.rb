@@ -9,8 +9,10 @@ class Product < ActiveRecord::Base
   has_many :carted_products
   has_many :orders, through: :carted_products
 
-  validates :name, :price, :description, :stock_info, :user, presence: true
+  validates :name, :price, :description, :stock_info, presence: true
   validates :price, numericality: true
+
+  accepts_nested_attributes_for :images
 
 
   def friendly_updated_at

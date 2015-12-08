@@ -6,7 +6,7 @@
   <% end %>
 <% end %>
 
-<div class="center"><img src="<%= @product.images.first.image_url %>"></div>
+
 <br>
 <h4>Supplier: <%= @product.supplier.name %></h4>
 <h4>Price: <%= number_to_currency(@product.price) %> (<%= @product.sale_message %>)</h4>
@@ -29,7 +29,6 @@
 </p>
 
 
-
 Buy Now:
 <div>
 <%= form_tag "/cart", method: :post do %>
@@ -45,11 +44,10 @@ Buy Now:
 
 
 <p>Last updated: <%= @product.friendly_updated_at %></p>
-<p>Updated by: <%= @product.user.email %></p>
-<%= link_to "Edit", "/index/#{@product.id}/edit", method: :get %><br>
+<%= link_to "Edit", "/products/#{@product.id}/edit", method: :get %><br>
 
-<%= link_to "Delete", "/index/#{@product.id}", method: :delete %><br>
-<%= link_to "Go back", "/index" %><br>
+<%= link_to "Delete", "/products/#{@product.id}", method: :delete %><br>
+<%= link_to "Go back", "/products" %><br>
 
 
 

@@ -1,7 +1,7 @@
-<%= form_tag "/index/#{@product.id}", method: :patch do %>
+<%= form_tag "/products/#{@product.id}", method: :patch do %>
 
 Fill out the following form to add a game to the list:
-<div>
+<!-- <div>
   <%= label_tag :name, "Game Title:" %>
   <%= text_field_tag :name, @product.name %>
 </div>
@@ -28,4 +28,6 @@ Fill out the following form to add a game to the list:
   <%= submit_tag "Submit Game" %>
 </div>
 
-<% end %>
+<% end %> -->
+
+<%= render "form" %>

@@ -2,19 +2,19 @@
 
 <div class="center">
 <p>
-  | <%= link_to "Show all", "/index?showall=true" %> |
-  | <%= link_to "Price: Low to High", "/index?order=ascending" %> |
-  | <%= link_to "Price: High to Low", "/index?order=descending" %> |
+  | <%= link_to "Show all", "/products?showall=true" %> |
+  | <%= link_to "Price: Low to High", "/products?order=ascending" %> |
+  | <%= link_to "Price: High to Low", "/products?order=descending" %> |
 </p>
 <p>
   <% @categories.each do |category| %>
-   | <%= link_to category.name, "/index?category=#{category.name}" %> |
+   | <%= link_to category.name, "/products?category=#{category.name}" %> |
   <% end %>
 </p>
 </div>
 <% @products.each do |product| %>
 <div class="col-md-3">
-  <a href="/index/<%= product.id %>" class="nil">  
+  <a href="/products/<%= product.id %>" class="nil">  
   <div class="product-box">  
     <img class="center-block img-responsive" src="<%= product.images.first.image_url %>">
     <h4><%= product.name %></h4>
@@ -28,7 +28,7 @@
 </div>
 
 <div class="button">
-  <%= button_to 'Add Game', new_path, :class => 'btn btn-add btn-default btn-large' %>
+  <%= button_to 'Add Game', "/products/new", method: :get, :class => 'btn btn-add btn-default btn-large' %>
 </div>
 
 

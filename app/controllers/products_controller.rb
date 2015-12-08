@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     end
 
     if params[:category]
-      @products = Category.find_by(name:params[:category]).products
+      @products = Category.find_by(name: params[:category]).products
     end
   end
   
@@ -28,26 +28,21 @@ class ProductsController < ApplicationController
   def new
     if current_user && current_user.admin?
       @product = Product.new
+      @product.user_id = current_user
+      @product.images.build
     else
-      redirect_to "/"
+      redirect_to "/products"
     end
   end
 
   def create
-    if params[:stock_info] == "In Stock"
-      stock = true
-    else
-      stock = false
-    end
-    # supplier = Supplier.find_by(name: params[:supplier])
-    # product = Product.create(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, user_id: current_user.id)
-    @product = Product.new(name: params[:name], price: params[:price], description: params[:description], stock_info: stock, supplier: [:supplier][:supplier_id], user_id: current_user.id)
+
+    @product = Product.new(product_params)
     if @product.save
       flash[:success] = "Game Created"
-      # redirect_to "/index/images/new"
-      redirect_to "/index"
+      redirect_to "/products"
     else
-      flash[:danger] = "You hella messed up."
+      flash[:danger] = "Game Not Created. Error!"
       render :new
     end
   end
@@ -56,30 +51,18 @@ class ProductsController < ApplicationController
     @carted_product = CartedProduct.new
     id = params[:id]
     @product = Product.find_by(id: id)
-    @images = @product.images
   end
 
   def edit
-    id = params[:id]
-    @product = Product.find_by(id: id)
+    @product = Product.find_by(id: params[:id])
   end
 
   def update
-    id = params[:id]
-    product = Product.find_by(id: id)
-    name = params[:name]
-    price = params[:price]
-    description = params[:description]
-    if params[:stock_info] == "In Stock"
-      stock = true
-    else
-      stock = false
-    end
-
-    product.update(name: name, price: price, description: description, stock_info: stock, user_id: current_user.id)
-    flash[:info] = "Game Updated"
-    redirect_to "/index/#{product.id}"
-
+    @product = Product.find_by(id: params[:id])
+    @product.update(product_params)
+    @product.user_id = current_user
+    flash[:success] = "This game has been updated!"
+    redirect_to "/products/#{@product.id}"
   end
 
   def destroy
@@ -87,13 +70,21 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: id)
     @product.destroy
     flash[:danger] = "Game Deleted!"
-    redirect_to "/index"
+    redirect_to "/products"
   end
 
   def search
+    @categories = Category.all
     search_term = params[:search]
-    @products = Product.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}%", "%#{search_term}%")
+    # @products = Product.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}%", "%#{search_term}%")
+    @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
     render :index
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :supplier_id, :user_id, :price, :description, :stock_info, images_attributes: [:image_url])
   end
 
 end

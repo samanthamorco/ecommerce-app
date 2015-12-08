@@ -1,0 +1,51 @@
+<%= form_for @product do |f| %>
+
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+  
+<div>
+  <%= f.label :supplier %>
+  <%= f.collection_select :supplier_id, Supplier.all, :id, :name %>
+</div>
+
+<div>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+</div>
+
+<div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+
+<div>
+  <%= f.label :stock_info %>
+  <%= f.text_field :stock_info %>
+</div>
+
+
+<div>
+  <%= f.fields_for :images do |ff| %>
+    <div>
+      <%= ff.label :image_url %>
+      <%= ff.text_field :image_url %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <%= f.fields_for :images do |ff| %>
+    <div>
+      <%= ff.label :image_url %>
+      <%= ff.text_field :image_url %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+<%= f.submit %>
+</div>
+
+<% end %>
